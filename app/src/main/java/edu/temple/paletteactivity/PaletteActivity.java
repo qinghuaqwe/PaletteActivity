@@ -12,11 +12,14 @@ public class PaletteActivity extends Activity {
 
     Spinner spinner;
     public static final String EXTRA_MESSAGE = "Color";
+    boolean qwe;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_palette);
+
+        qwe = true;
 
         spinner = findViewById(R.id.spinner);
 
@@ -29,10 +32,18 @@ public class PaletteActivity extends Activity {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Intent startActivityIntent = new Intent(PaletteActivity.this, CanvasActivity.class);
-                String chosencolor = parent.getItemAtPosition(position).toString();
-                startActivityIntent.putExtra(EXTRA_MESSAGE, chosencolor);
-                startActivity(startActivityIntent);
+                
+                if(qwe){
+                    qwe = false;
+                }
+
+                else {
+                    Intent startActivityIntent = new Intent(PaletteActivity.this, CanvasActivity.class);
+                    String chosencolor = parent.getItemAtPosition(position).toString();
+                    startActivityIntent.putExtra(EXTRA_MESSAGE, chosencolor);
+                    startActivity(startActivityIntent);
+                }
+
 
             }
 
